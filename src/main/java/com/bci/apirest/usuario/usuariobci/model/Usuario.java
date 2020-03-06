@@ -1,10 +1,44 @@
 package com.bci.apirest.usuario.usuariobci.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Usuario {
-	private String name, email, password;
+	private String name, email, password, token;
 	Long id;
+	private Date creacion, modficacon, ultimooIngreso;
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Date getCreacion() {
+		return creacion;
+	}
+
+	public void setCreacion(Date creacion) {
+		this.creacion = creacion;
+	}
+
+	public Date getModficacon() {
+		return modficacon;
+	}
+
+	public void setModficacon(Date modficacon) {
+		this.modficacon = modficacon;
+	}
+
+	public Date getUltimooIngreso() {
+		return ultimooIngreso;
+	}
+
+	public void setUltimooIngreso(Date ultimooIngreso) {
+		this.ultimooIngreso = ultimooIngreso;
+	}
 
 	public Long getId() {
 		return id;
