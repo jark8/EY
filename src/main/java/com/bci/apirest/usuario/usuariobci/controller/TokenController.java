@@ -21,7 +21,6 @@ public class TokenController {
 	
 	@PostMapping("token")
 	public Token login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-		
 		String tkn = getJWTToken(username);
 		Token token = new Token();
 		token.setUser(username);
@@ -34,7 +33,6 @@ public class TokenController {
 		String secretKey = "mySecretKey";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList("ROLE_USER");
-		
 		String token = Jwts
 				.builder()
 				.setId("softtekJWT")

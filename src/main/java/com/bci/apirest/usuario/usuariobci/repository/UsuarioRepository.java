@@ -10,8 +10,7 @@ import com.bci.apirest.usuario.usuariobci.entity.UsuarioEntity;
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long>  {
 
-	
-	
 	@Query( value =  "SELECT * FROM USUARIO a WHERE a.email = ?1", nativeQuery = true)
 	UsuarioEntity findUsuarioByEmail(@Param("email") String email);
+
 }

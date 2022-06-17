@@ -1,24 +1,66 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.5.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+    id 'java'
+    id 'maven-publish'
 }
-
-group = 'com.bci.apirest.usuario'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
 repositories {
-	mavenCentral()
+    mavenLocal()
+    maven {
+        url = uri('http://nexus.bch.bancodechile.cl:8081/repository/bch-maven-releases')
+
+         allowInsecureProtocol = true
+    }
+
+    maven {
+        url = uri('http://nexus.bch.bancodechile.cl:8081/repository/bch-maven-snapshots')
+
+        allowInsecureProtocol = true
+    }
+
+    maven {
+        url = uri('http://central')
+
+         allowInsecureProtocol = true
+    }
+
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+        allowInsecureProtocol = true
+
+    }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.1.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE'
+    implementation 'io.jsonwebtoken:jjwt:0.9.0'
+    implementation 'org.json:json:20160810'
+    implementation 'org.springframework.boot:spring-boot-devtools:2.1.1.RELEASE'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.1.RELEASE'
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    runtimeOnly 'com.h2database:h2:1.4.197'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.1.RELEASE'
+    testImplementation 'org.springframework.security:spring-security-test:5.1.2.RELEASE'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    implementation("org.projectlombok:lombok:1.18.24")
 }
 
-test {
-	useJUnitPlatform()
+group = 'cl.bci.restapi'
+version = '0.0.1-SNAPSHOT'
+description = 'usuariobci'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
